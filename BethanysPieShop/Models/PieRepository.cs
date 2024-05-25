@@ -2,7 +2,7 @@
 
 namespace BethanysPieShop.Models
 {
-    public class PieRepository: IPieRepository
+    public class PieRepository : IPieRepository
     {
         private readonly BethanysPieShopDbContext _bethanysPieShopDbContext;
 
@@ -15,7 +15,7 @@ namespace BethanysPieShop.Models
         {
             get
             {
-                return _bethanysPieShopDbContext.Pies.Include(c=>c.Category);
+                return _bethanysPieShopDbContext.Pies.Include(c => c.Category);
             }
         }
 
@@ -23,13 +23,18 @@ namespace BethanysPieShop.Models
         {
             get
             {
-                return _bethanysPieShopDbContext.Pies.Include(c => c.Category).Where(p=>p.IsPieOfTheWeek);
+                return _bethanysPieShopDbContext.Pies.Include(c => c.Category).Where(p => p.IsPieOfTheWeek);
             }
         }
 
         public Pie? GetPieById(int pieId)
         {
-            return _bethanysPieShopDbContext.Pies.FirstOrDefault(p=>p.PieId == pieId);
+            return _bethanysPieShopDbContext.Pies.FirstOrDefault(p => p.PieId == pieId);
+        }
+
+        public IEnumerable<Pie> SearchPies(string searchQuery)
+        {
+            throw new NotImplementedException();
         }
     }
 }
